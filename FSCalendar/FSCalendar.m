@@ -826,6 +826,18 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
+- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier
+{
+    NSCParameterAssert(nib != nil);
+    if (!identifier.length) {
+        [NSException raise:FSCalendarInvalidArgumentsExceptionName format:@"This identifier must not be nil and must not be an empty string."];
+    }
+    if ([identifier isEqualToString:FSCalendarDefaultCellReuseIdentifier]) {
+        [NSException raise:FSCalendarInvalidArgumentsExceptionName format:@"Do not use %@ as the cell reuse identifier.", FSCalendarDefaultCellReuseIdentifier];
+    }
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
+}
+
 - (FSCalendarCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)position;
 {
     if (!identifier.length) {

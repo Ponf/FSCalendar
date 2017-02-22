@@ -476,6 +476,14 @@ IB_DESIGNABLE
 - (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier;
 
 /**
+ Register a Nib for use in creating new calendar cells.
+
+ @param nib The xib with modified FSCalendarCell (UICollectionViewCell subclass) that you want to use in the calendar.
+ @param identifier The reuse identifier to associate with the specified class. This parameter must not be nil and must not be an empty string.
+ */
+- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier;
+
+/**
  Returns a reusable calendar cell object located by its identifier.
 
  @param identifier The reuse identifier for the specified cell. This parameter must not be nil.
